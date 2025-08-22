@@ -1,0 +1,47 @@
+services:
+  # Serviço do Banco de Dados PostgreSQL para a API de Investimentos
+  postgres-investments:
+    image: postgres:16-alpine
+    container_name: postgres-investments
+    ports:
+      # Expõe a porta do container (5432) para a porta 5433 na sua máquina local
+      - "5433:5432"
+    environment:
+      # Define o nome do banco de dados, usuário e senha
+      - POSTGRES_DB=investments_db
+      - POSTGRES_USER=invest_user
+      - POSTGRES_PASSWORD=invest_password
+    volumes:
+      # Monta o script SQL para ser executado na inicialização do container
+      - ./01-create-database.sql:/docker-entrypoint-initdb.d/01-create-database.sql
+    networks:
+      - investments-network
+    healthcheck:
+      # Verifica se o banco de dados está pronto para aceitar conexões
+      test: ["CMD-SHELL", "pg_isready -U invest_user -d investments_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Serviço da API de Investimentos
+  investments-api:
+    build: 
+      context: . # Constrói a imagem a partir do Dockerfile na pasta atual
+    container_name: investments-api
+    ports:
+      - "8080:8080"
+    environment:
+      # Configura a conexão da API com o banco de dados
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-investments:5432/investments_db
+      - SPRING_DATASOURCE_USERNAME=invest_user
+      - SPRING_DATASOURCE_PASSWORD=invest_password
+    depends_on:
+      postgres-investments:
+        condition: service_healthy # Garante que a API só inicie após o banco de dados estar pronto
+    networks:
+      - investments-network
+
+# Define a rede para a comunicação entre os containers
+networks:
+  investments-network:
+    driver: bridge
