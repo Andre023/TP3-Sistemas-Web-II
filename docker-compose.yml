@@ -18,7 +18,7 @@ services:
       - investments-network
     healthcheck:
       # Verifica se o banco de dados está pronto para aceitar conexões
-      test: ["CMD-SHELL", "pg_isready -U invest_user -d investments_db"]
+      test: [ "CMD-SHELL", "pg_isready -U invest_user -d investments_db" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -26,7 +26,7 @@ services:
   # Serviço da API de Investimentos
   investments-api:
     build: 
-      context: . # Constrói a imagem a partir do Dockerfile na pasta atual
+      context: .
     container_name: investments-api
     ports:
       - "8080:8080"
@@ -35,6 +35,8 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-investments:5432/investments_db
       - SPRING_DATASOURCE_USERNAME=invest_user
       - SPRING_DATASOURCE_PASSWORD=invest_password
+      # Adicione esta linha para que o Hibernate crie/atualize as tabelas
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     depends_on:
       postgres-investments:
         condition: service_healthy # Garante que a API só inicie após o banco de dados estar pronto

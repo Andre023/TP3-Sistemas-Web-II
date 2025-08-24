@@ -1,5 +1,6 @@
 package br.com.fintech.investments.model;
 
+import org.hibernate.annotations.GenericGenerator;
 import br.com.fintech.investments.enums.InvestmentType;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -13,7 +14,12 @@ import java.util.UUID;
 public class Investment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
     @Enumerated(EnumType.STRING)

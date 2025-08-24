@@ -29,7 +29,7 @@ GET http://localhost:8080/investments
 GET http://localhost:8080/investments?type=CRIPTO
 
 ### Atualizar um ativo (substitua {id} pelo ID de um ativo existente)
-PUT http://localhost:8080/investments/1d64f2e5-364a-4c54-8c8a-7a8e9d3d9a1d
+PUT http://localhost:8080/investments/1baaad74-afe2-4b79-936b-57653e30bbf7
 Content-Type: application/json
 
 {
@@ -41,7 +41,7 @@ Content-Type: application/json
 }
 
 ### Remover um ativo da carteira (substitua {id} pelo ID de um ativo existente)
-DELETE http://localhost:8080/investments/1d64f2e5-364a-4c54-8c8a-7a8e9d3d9a1d
+DELETE http://localhost:8080/investments/1baaad74-afe2-4b79-936b-57653e30bbf7
 
 ### Resumo da carteira
 GET http://localhost:8080/investments/summary
