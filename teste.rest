@@ -1,4 +1,4 @@
-### Cadastrar um novo ativo na carteira
+### Cadastrar um novo ativo (Ação)
 POST http://localhost:8080/investments
 Content-Type: application/json
 
@@ -6,11 +6,11 @@ Content-Type: application/json
   "type": "ACAO",
   "symbol": "BBAS3",
   "quantity": 100,
-  "purchasePrice": 19.68,
-  "purchaseDate": "2025-07-31"
+  "purchasePrice": 35.50,
+  "purchaseDate": "2025-01-10"
 }
 
-### Cadastrar outro ativo
+### Cadastrar outro ativo (Cripto)
 POST http://localhost:8080/investments
 Content-Type: application/json
 
@@ -18,30 +18,29 @@ Content-Type: application/json
   "type": "CRIPTO",
   "symbol": "BTC",
   "quantity": 1,
-  "purchasePrice": 1000.00,
-  "purchaseDate": "2025-01-15"
+  "purchasePrice": 25000.00,
+  "purchaseDate": "2024-11-20"
 }
 
-### Listar todos os ativos da carteira
+### Listar todos os ativos da carteira (com cálculo de performance)
+# @name getAllInvestments
 GET http://localhost:8080/investments
 
-### Filtrar ativos por tipo
-GET http://localhost:8080/investments?type=CRIPTO
-
-### Atualizar um ativo (substitua {id} pelo ID de um ativo existente)
-PUT http://localhost:8080/investments/1baaad74-afe2-4b79-936b-57653e30bbf7
+### Atualizar o valor de mercado de um ativo
+# Substitua {id} pelo ID de um ativo criado anteriormente
+PATCH http://localhost:8080/investments/95ef3aaf-0492-4953-8323-e454036c2488/market-value
 Content-Type: application/json
 
 {
-  "type": "ACAO",
-  "symbol": "BBAS3",
-  "quantity": 150,
-  "purchasePrice": 20.50,
-  "purchaseDate": "2025-08-01"
+  "currentMarketPrice": 42.75
 }
 
-### Remover um ativo da carteira (substitua {id} pelo ID de um ativo existente)
-DELETE http://localhost:8080/investments/1baaad74-afe2-4b79-936b-57653e30bbf7
+### Listar novamente para ver o lucro/prejuízo atualizado
+GET http://localhost:8080/investments
+
+### Remover um ativo da carteira
+# Substitua {id} pelo ID de um ativo existente
+DELETE http://localhost:8080/investments/95ef3aaf-0492-4953-8323-e454036c2488
 
 ### Resumo da carteira
 GET http://localhost:8080/investments/summary

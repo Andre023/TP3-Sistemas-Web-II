@@ -1,0 +1,12 @@
+C:\tp3\TP3-Sistemas-Web-II\src\main\java\br\com\fintech\investments\dto\CreateInvestmentDTO.java
+C:\tp3\TP3-Sistemas-Web-II\src\main\java\br\com\fintech\investments\dto\InvestmentDTO.java
+C:\tp3\TP3-Sistemas-Web-II\src\main\java\br\com\fintech\investments\converter\InvestmentConverter.java
+C:\tp3\TP3-Sistemas-Web-II\src\main\java\br\com\fintech\investments\InvestmentsApplication.java
+C:\tp3\TP3-Sistemas-Web-II\src\main\java\br\com\fintech\investments\model\Investment.java
+C:\tp3\TP3-Sistemas-Web-II\src\main\java\br\com\fintech\investments\dto\PortfolioSummaryDTO.java
+C:\tp3\TP3-Sistemas-Web-II\src\main\java\br\com\fintech\investments\dto\UpdateInvestmentDTO.java
+C:\tp3\TP3-Sistemas-Web-II\src\main\java\br\com\fintech\investments\service\InvestmentService.java
+C:\tp3\TP3-Sistemas-Web-II\src\main\java\br\com\fintech\investments\controller\InvestmentController.java
+C:\tp3\TP3-Sistemas-Web-II\src\main\java\br\com\fintech\investments\enums\InvestmentType.java
+C:\tp3\TP3-Sistemas-Web-II\src\main\java\br\com\fintech\investments\repository\InvestmentRepository.java
+C:\tp3\TP3-Sistemas-Web-II\src\main\java\br\com\fintech\investments\dto\InvestmentRequestDTO.java

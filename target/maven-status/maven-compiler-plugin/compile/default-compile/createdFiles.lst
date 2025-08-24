@@ -1,0 +1,12 @@
+br\com\fintech\investments\dto\InvestmentDTO.class
+br\com\fintech\investments\service\InvestmentService.class
+br\com\fintech\investments\enums\InvestmentType.class
+br\com\fintech\investments\model\Investment.class
+br\com\fintech\investments\InvestmentsApplication.class
+br\com\fintech\investments\controller\InvestmentController.class
+br\com\fintech\investments\dto\InvestmentRequestDTO.class
+br\com\fintech\investments\converter\InvestmentConverter.class
+br\com\fintech\investments\dto\CreateInvestmentDTO.class
+br\com\fintech\investments\dto\UpdateInvestmentDTO.class
+br\com\fintech\investments\dto\PortfolioSummaryDTO.class
+br\com\fintech\investments\repository\InvestmentRepository.class

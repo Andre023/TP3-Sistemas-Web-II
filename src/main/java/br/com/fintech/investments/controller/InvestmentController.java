@@ -1,9 +1,7 @@
 package br.com.fintech.investments.controller;
 
-import br.com.fintech.investments.dto.InvestmentRequestDTO;
-import br.com.fintech.investments.dto.PortfolioSummaryDTO;
+import br.com.fintech.investments.dtos.*;
 import br.com.fintech.investments.enums.InvestmentType;
-import br.com.fintech.investments.model.Investment;
 import br.com.fintech.investments.service.InvestmentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,17 +19,17 @@ public class InvestmentController {
     private final InvestmentService investmentService;
 
     @PostMapping
-    public ResponseEntity<Investment> createInvestment(@Valid @RequestBody InvestmentRequestDTO requestDTO) {
+    public ResponseEntity<InvestmentPerformanceDTO> createInvestment(@Valid @RequestBody CreateInvestmentDTO requestDTO) {
         return ResponseEntity.ok(investmentService.createInvestment(requestDTO));
     }
 
     @GetMapping
-    public ResponseEntity<List<Investment>> getAllInvestments(@RequestParam(required = false) InvestmentType type) {
+    public ResponseEntity<List<InvestmentPerformanceDTO>> getAllInvestments(@RequestParam(required = false) InvestmentType type) {
         return ResponseEntity.ok(investmentService.getAllInvestments(type));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Investment> updateInvestment(@PathVariable UUID id, @Valid @RequestBody InvestmentRequestDTO requestDTO) {
+    public ResponseEntity<InvestmentPerformanceDTO> updateInvestment(@PathVariable UUID id, @Valid @RequestBody UpdateInvestmentDTO requestDTO) {
         return ResponseEntity.ok(investmentService.updateInvestment(id, requestDTO));
     }
 
@@ -44,5 +42,10 @@ public class InvestmentController {
     @GetMapping("/summary")
     public ResponseEntity<PortfolioSummaryDTO> getPortfolioSummary() {
         return ResponseEntity.ok(investmentService.getPortfolioSummary());
+    }
+
+    @PatchMapping("/{id}/market-value")
+    public ResponseEntity<InvestmentPerformanceDTO> updateMarketValue(@PathVariable UUID id, @Valid @RequestBody UpdateMarketValueDTO requestDTO) {
+        return ResponseEntity.ok(investmentService.updateMarketValue(id, requestDTO));
     }
 }
